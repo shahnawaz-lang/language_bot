@@ -19,7 +19,7 @@ async def parse_sentence(ctx, model, string):
                                                               'data': string}).json()['result'])
     for k, v in output_string.items():
         embed.add_field(name=k, value=v, inline=False)
-    await ctx.send(embed=embed)
+    await ctx.send("hello")
 
 
 
