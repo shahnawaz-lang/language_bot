@@ -3,6 +3,8 @@
 import os
 import discord
 from discord.ext import commands
+from requests import request
+from help_func import formatter
 
 
 intents = discord.Intents.default()
@@ -14,13 +16,18 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+@Bot.command()
+async def parse_sentence(ctx, model, string):
+    embed = discord.Embed(title=string, colour=discord.Colour.blue())
+    output_string = formatter(request('GET', url=url, params={'model': str(model).lower() or "english",
+                                                              'tokenizer': '',
+                                                              'parser': '',
+                                                              'tagger': '',
+                                                              'data': string}).json()['result'])
+    for k, v in output_string.items():
+        embed.add_field(name=k, value=v, inline=False)
+    await ctx.send(embed=embed)
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send("Choo choo! 🚅")
 
 
 bot.run(os.environ["DISCORD_TOKEN"])
