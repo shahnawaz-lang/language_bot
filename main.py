@@ -4,7 +4,7 @@ from discord.ext import commands
 from requests import request
 from help_func import formatter
 
-
+url = 'http://lindat.mff.cuni.cz/services/udpipe/api/process'
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='$', intents=intents)
 
@@ -19,7 +19,7 @@ async def parse_sentence(ctx, model, string):
                                                               'data': string}).json()['result'])
     for k, v in output_string.items():
         embed.add_field(name=k, value=v, inline=False)
-    await ctx.send("hello")
+    await ctx.send(embed=embed)
 
 
 
