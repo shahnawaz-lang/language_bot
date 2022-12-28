@@ -11,10 +11,6 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user}")
-
 @bot.command()
 async def parse_sentence(ctx, model, string):
     embed = discord.Embed(title=string, colour=discord.Colour.blue())
