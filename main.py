@@ -7,8 +7,7 @@ from requests import request
 from help_func import formatter
 
 
-intents = discord.Intents.default()
-intents.message_content = True
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 
