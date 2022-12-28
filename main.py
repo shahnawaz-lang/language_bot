@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
-@Bot.command()
+@bot.command()
 async def parse_sentence(ctx, model, string):
     embed = discord.Embed(title=string, colour=discord.Colour.blue())
     output_string = formatter(request('GET', url=url, params={'model': str(model).lower() or "english",
